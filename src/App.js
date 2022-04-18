@@ -77,10 +77,38 @@ class App extends React.Component {
                 fetchGetUser={ this.fetchGetUser }
               />) }
             />
-            <Route path="/profile" component={ Profile } />
-            <Route path="/favorites" component={ Favorites } />
-            <Route path="/album/:id" render={ () => <Album /> } />
-            <Route path="/search" component={ Search } />
+            <Route
+              path="/profile"
+              render={ () => (<Profile
+                { ... this.state }
+                fetchGetUser={ this.fetchGetUser }
+              />) }
+            />
+            <Route
+              path="/favorites"
+              render={ () => (<Favorites
+                { ... this.state }
+                fetchGetUser={ this.fetchGetUser }
+              />
+
+              ) }
+            />
+            <Route
+              path="/album/:id"
+              render={ () => (<Album
+                { ... this.state }
+                fetchGetUser={ this.fetchGetUser }
+              />) }
+            />
+            <Route
+              path="/search"
+              render={ () => (<Search
+                { ... this.state }
+                fetchGetUser={ this.fetchGetUser }
+              />
+
+              ) }
+            />
             <Route
               path="/"
               exact

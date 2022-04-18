@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/search';
+import { getUser } from './services/userAPI';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ class App extends React.Component {
       NomeLogin: '',
       statusButtonLogin: true,
       logado: false,
+      pessoaLogada: '',
+      loading: false,
     };
   }
 
@@ -47,13 +50,33 @@ class App extends React.Component {
     });
   }
 
+  fetchGetUser = async () => {
+    this.setState(
+      { loading: true },
+      async () => {
+        const pessoaLogada = await getUser();
+        console.log(pessoaLogada);
+        this.setState({
+          loading: false,
+          pessoaLogada,
+        });
+      },
+    );
+  }
+
   render() {
     const { logado } = this.state;
     return (
       <div>
         <BrowserRouter>
           <Switch>
-            <Route path="/profile/edit" component={ ProfileEdit } />
+            <Route
+              path="/profile/edit"
+              render={ () => (<ProfileEdit
+                { ... this.state }
+                fetchGetUser={ this.fetchGetUser }
+              />) }
+            />
             <Route path="/profile" component={ Profile } />
             <Route path="/favorites" component={ Favorites } />
             <Route path="/album/:id" render={ () => <Album /> } />

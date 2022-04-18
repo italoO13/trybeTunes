@@ -17,7 +17,7 @@ class Album extends React.Component {
   renderSearch = () => (
     <>
       <Header { ...this.props } />
-      ProfileEdit
+      Album
     </>
   )
 

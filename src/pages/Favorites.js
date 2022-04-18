@@ -17,7 +17,7 @@ class Favorites extends React.Component {
   renderSearch = () => (
     <>
       <Header { ...this.props } />
-      ProfileEdit
+      Favorites
     </>
   )
 

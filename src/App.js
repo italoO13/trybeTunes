@@ -55,7 +55,6 @@ class App extends React.Component {
       { loading: true },
       async () => {
         const pessoaLogada = await getUser();
-        console.log(pessoaLogada);
         this.setState({
           loading: false,
           pessoaLogada,

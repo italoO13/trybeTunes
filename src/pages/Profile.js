@@ -17,7 +17,7 @@ class Profile extends React.Component {
   renderSearch = () => (
     <>
       <Header { ...this.props } />
-      ProfileEdit
+      Profile
     </>
   )
 

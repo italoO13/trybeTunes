@@ -9,7 +9,6 @@ class Login extends React.Component {
     super(props);
     this.state = {
       loading: false,
-      minLength: 3,
     };
   }
 
@@ -28,8 +27,7 @@ class Login extends React.Component {
   }
 
   renderLogin = () => {
-    const { NomeLogin, onInputChange } = this.props;
-    const { minLength } = this.state;
+    const { NomeLogin, onInputChange, statusButtonLogin } = this.props;
     return (
       <>
         <h2>Login</h2>
@@ -43,7 +41,7 @@ class Login extends React.Component {
             onInputChange={ onInputChange }
           />
           <button
-            disabled={ NomeLogin.length < minLength }
+            disabled={ statusButtonLogin }
             data-testid="login-submit-button"
             type="button"
             onClick={ this.criaUsuario }
@@ -73,6 +71,7 @@ class Login extends React.Component {
 Login.propTypes = {
   NomeLogin: propTypes.string.isRequired,
   onInputChange: propTypes.func.isRequired,
+  statusButtonLogin: propTypes.bool.isRequired,
   MudaParaLogado: propTypes.func.isRequired,
 };
 export default Login;

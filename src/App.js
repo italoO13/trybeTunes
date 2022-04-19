@@ -9,6 +9,7 @@ import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/search';
 import { getUser } from './services/userAPI';
 import searchAlbumsAPI from './services/searchAlbumsAPI';
+import getMusics from './services/musicsAPI';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class App extends React.Component {
       albunsArtista: [],
       pesquisafeita: false,
       auxNomeArtista: '',
+      listaMusicasAlbum: [],
     };
   }
 
@@ -89,6 +91,20 @@ class App extends React.Component {
     );
   }
 
+  fetchMusicApi = async (id) => {
+    this.setState(
+      { loading: true },
+      async () => {
+        const musicas = await getMusics(id);
+        this.setState({
+          loading: false,
+          listaMusicasAlbum: musicas,
+        });
+      },
+
+    );
+  }
+
   render() {
     const { logado } = this.state;
     return (
@@ -120,9 +136,11 @@ class App extends React.Component {
             />
             <Route
               path="/album/:id"
-              render={ () => (<Album
+              render={ (props) => (<Album
                 { ... this.state }
+                { ...props }
                 fetchGetUser={ this.fetchGetUser }
+                fetchMusicApi={ this.fetchMusicApi }
               />) }
             />
             <Route

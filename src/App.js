@@ -15,8 +15,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       NomeLogin: '',
-      statusButtonLogin: true,
-      statusButtonSearch: true,
       logado: false,
       pessoaLogada: '',
       loading: false,
@@ -33,24 +31,6 @@ class App extends React.Component {
       [name]: value,
     }, () => {
       this.validaInputSearch();
-      this.validaLogin();
-    });
-  }
-
-  validaLogin = () => {
-    const { NomeLogin } = this.state;
-    console.log(NomeLogin);
-    const minLength = 3;
-    this.setState({
-      statusButtonLogin: NomeLogin.length < minLength,
-    });
-  }
-
-  validaInputSearch= () => {
-    const { nomeArtista } = this.state;
-    const minLength = 2;
-    this.setState({
-      statusButtonLogin: nomeArtista.length < minLength,
     });
   }
 

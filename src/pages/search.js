@@ -8,7 +8,9 @@ import CardAlbum from '../components/cardAlbum';
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      minLength: 2,
+    };
   }
 
   componentDidMount() {
@@ -33,8 +35,9 @@ class Search extends React.Component {
   }
 
   renderSearch = () => {
-    const { nomeArtista, onInputChange, statusButtonLogin,
+    const { nomeArtista, onInputChange,
       pesquisafeita, fetchSearchAlbum } = this.props;
+    const { minLength } = this.state;
     return (
       <>
         <Header { ...this.props } />
@@ -51,7 +54,7 @@ class Search extends React.Component {
 
           <button
             data-testid="search-artist-button"
-            disabled={ statusButtonLogin }
+            disabled={ nomeArtista.length < minLength }
             type="button"
             onClick={ fetchSearchAlbum }
           >
@@ -88,7 +91,6 @@ Search.propTypes = {
   pessoaLogada: PropTypes.objectOf.isRequired,
   nomeArtista: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
-  statusButtonLogin: PropTypes.bool.isRequired,
   albunsArtista: PropTypes.objectOf.isRequired,
   pesquisafeita: PropTypes.bool.isRequired,
   fetchSearchAlbum: PropTypes.func.isRequired,

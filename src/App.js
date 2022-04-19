@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/search';
 import { getUser } from './services/userAPI';
+import searchAlbumsAPI from './services/searchAlbumsAPI';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,6 +21,9 @@ class App extends React.Component {
       pessoaLogada: '',
       loading: false,
       nomeArtista: '',
+      albunsArtista: [],
+      pesquisafeita: false,
+      auxNomeArtista: '',
     };
   }
 
@@ -76,6 +80,22 @@ class App extends React.Component {
     );
   }
 
+  fetchSearchAlbum = async () => {
+    this.setState(
+      { loading: true },
+      async () => {
+        const { nomeArtista } = this.state;
+        const albunsArtista = await searchAlbumsAPI(nomeArtista);
+        this.setState({
+          loading: false,
+          albunsArtista,
+          pesquisafeita: true,
+          auxNomeArtista: nomeArtista,
+        }, this.setState({ nomeArtista: '' }));
+      },
+    );
+  }
+
   render() {
     const { logado } = this.state;
     return (
@@ -118,6 +138,7 @@ class App extends React.Component {
                 { ... this.state }
                 fetchGetUser={ this.fetchGetUser }
                 onInputChange={ this.onInputChange }
+                fetchSearchAlbum={ this.fetchSearchAlbum }
               />
 
               ) }

@@ -32,14 +32,15 @@ class App extends React.Component {
     this.setState({
       [name]: value,
     }, () => {
-      this.validaLogin();
       this.validaInputSearch();
+      this.validaLogin();
     });
   }
 
   validaLogin = () => {
     const { NomeLogin } = this.state;
-    const minLength = 2;
+    console.log(NomeLogin);
+    const minLength = 3;
     this.setState({
       statusButtonLogin: NomeLogin.length < minLength,
     });

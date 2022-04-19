@@ -46,14 +46,6 @@ class App extends React.Component {
     });
   }
 
-  // validaInputSearch= () => {
-  //   const { nomeArtista } = this.state;
-  //   const minLength = 2;
-  //   this.setState({
-  //     statusButtonLogin: nomeArtista.length < minLength,
-  //   });
-  // }
-
   RenderLogin = () => (
     <Login
       { ...this.state }

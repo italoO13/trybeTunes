@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-class Perfil extends React.Component {
+class PerfilVisualizacao extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -28,15 +28,15 @@ class Perfil extends React.Component {
 
   render() {
     return (
-      <div data-testid="page-profile">
+      <>
         {this.renderSearch()}
-      </div>
+      </>
     );
   }
 }
 
-Perfil.propTypes = {
+PerfilVisualizacao.propTypes = {
   pessoaLogada: PropTypes.objectOf(PropTypes.shape()).isRequired,
 };
 
-export default Perfil;
+export default PerfilVisualizacao;

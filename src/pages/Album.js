@@ -35,7 +35,7 @@ class Album extends React.Component {
             {listaMusicasAlbum.map((musica, index) => {
               if (index !== 0) {
                 return (
-                  <MusicCard { ...musica } key={ index } />
+                  <MusicCard { ...musica } { ...this.props } key={ index } />
                 );
               }
               return null;
@@ -65,7 +65,7 @@ Album.propTypes = {
   loading: PropTypes.bool.isRequired,
   pessoaLogada: PropTypes.shape.isRequired,
   fetchMusicApi: PropTypes.func.isRequired,
-  match: PropTypes.objectOf.isRequired,
+  match: PropTypes.arrayOf.isRequired,
   listaMusicasAlbum: PropTypes.objectOf.isRequired,
 
 };

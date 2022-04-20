@@ -10,6 +10,7 @@ import Search from './pages/search';
 import { getUser } from './services/userAPI';
 import searchAlbumsAPI from './services/searchAlbumsAPI';
 import getMusics from './services/musicsAPI';
+// import { addSong } from './services/favoriteSongsAPI';
 
 class App extends React.Component {
   constructor(props) {
@@ -105,6 +106,20 @@ class App extends React.Component {
     );
   }
 
+  // fetchGetAddSong = async (Id) => {
+  //   this.setState(
+  //     { loading: true },
+  //     async () => {
+  //       const { listaMusicasAlbum } = this.state;
+  //       const musica = listaMusicasAlbum.find(({ trackId }) => trackId === Id);
+  //       await addSong(musica);
+  //       this.setState({
+  //         loading: false,
+  //       });
+  //     },
+  //   );
+  // }
+
   render() {
     const { logado } = this.state;
     return (
@@ -141,6 +156,7 @@ class App extends React.Component {
                 { ...props }
                 fetchGetUser={ this.fetchGetUser }
                 fetchMusicApi={ this.fetchMusicApi }
+                fetchGetAddSong={ this.fetchGetAddSong }
               />) }
             />
             <Route

@@ -28,7 +28,6 @@ class Album extends React.Component {
       { loadingLocal: true },
       async () => {
         const musicFav = await getFavoriteSongs();
-        console.log(musicFav);
         this.setState({
           musicasFavoritas: musicFav,
           loadingLocal: false, // Foi necessário criar o loading local pq ele evita que o compoenent musicCard seja executado sem antes atualizar musicasFavoritas

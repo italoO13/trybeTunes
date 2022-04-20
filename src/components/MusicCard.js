@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends React.Component {
@@ -14,8 +14,6 @@ class MusicCard extends React.Component {
 
   componentDidMount() {
     const { musicasFavoritas, trackId: id } = this.props;
-    console.log(musicasFavoritas);
-    console.log(musicasFavoritas.some(({ trackId }) => id === trackId));
     this.setState({
       favorite: musicasFavoritas.some(({ trackId }) => id === trackId),
     });
@@ -25,6 +23,8 @@ class MusicCard extends React.Component {
     const { checked } = target;
     if (checked) {
       this.AddFavorito();
+    } else {
+      this.RemoveDoFavorito();
     }
     this.setState({ favorite: checked });
   }
@@ -36,6 +36,20 @@ class MusicCard extends React.Component {
         const { listaMusicasAlbum, trackId: id } = this.props;
         const musica = listaMusicasAlbum.find(({ trackId }) => trackId === id);
         await addSong(musica);
+        this.setState({
+          loading: false,
+        });
+      },
+    );
+  }
+
+  RemoveDoFavorito = async () => {
+    this.setState(
+      { loading: true },
+      async () => {
+        const { listaMusicasAlbum, trackId: id } = this.props;
+        const musica = listaMusicasAlbum.find(({ trackId }) => trackId === id);
+        await removeSong(musica);
         this.setState({
           loading: false,
         });

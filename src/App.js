@@ -10,7 +10,6 @@ import Search from './pages/search';
 import { getUser } from './services/userAPI';
 import searchAlbumsAPI from './services/searchAlbumsAPI';
 import getMusics from './services/musicsAPI';
-// import { addSong } from './services/favoriteSongsAPI';
 
 class App extends React.Component {
   constructor(props) {

@@ -3,19 +3,38 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      musicasFavoritas: [],
+      loadingLocal: false,
+    };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { fetchGetUser, fetchMusicApi } = this.props;
     const { match } = this.props;
     const { id } = match.params;
     fetchGetUser();
     fetchMusicApi(id);
+    await this.fetchGetFavoSongs();
+  }
+
+  fetchGetFavoSongs = async () => {
+    this.setState(
+      { loadingLocal: true },
+      async () => {
+        const musicFav = await getFavoriteSongs();
+        console.log(musicFav);
+        this.setState({
+          musicasFavoritas: musicFav,
+          loadingLocal: false, // Foi necessário criar o loading local pq ele evita que o compoenent musicCard seja executado sem antes atualizar musicasFavoritas
+        });
+      },
+    );
   }
 
   renderSearch = () => {
@@ -35,7 +54,12 @@ class Album extends React.Component {
             {listaMusicasAlbum.map((musica, index) => {
               if (index !== 0) {
                 return (
-                  <MusicCard { ...musica } { ...this.props } key={ index } />
+                  <MusicCard
+                    { ...musica }
+                    { ...this.state }
+                    { ...this.props }
+                    key={ index }
+                  />
                 );
               }
               return null;
@@ -50,9 +74,10 @@ class Album extends React.Component {
 
   render() {
     const { loading } = this.props;
+    const { loadingLocal } = this.state;
     return (
       <div data-testid="page-album">
-        {loading
+        {loading || loadingLocal
           ? <Loading />
           : this.renderSearch()}
       </div>
@@ -67,6 +92,7 @@ Album.propTypes = {
   fetchMusicApi: PropTypes.func.isRequired,
   match: PropTypes.arrayOf.isRequired,
   listaMusicasAlbum: PropTypes.objectOf.isRequired,
+  fetchGetFavoSongs: PropTypes.func.isRequired,
 
 };
 

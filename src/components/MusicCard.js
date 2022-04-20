@@ -7,9 +7,18 @@ class MusicCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorite: false,
       loading: false,
+      favorite: false,
     };
+  }
+
+  componentDidMount() {
+    const { musicasFavoritas, trackId: id } = this.props;
+    console.log(musicasFavoritas);
+    console.log(musicasFavoritas.some(({ trackId }) => id === trackId));
+    this.setState({
+      favorite: musicasFavoritas.some(({ trackId }) => id === trackId),
+    });
   }
 
   onInputChange = ({ target }) => {
@@ -70,6 +79,7 @@ MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
   listaMusicasAlbum: PropTypes.arrayOf.isRequired,
+  musicasFavoritas: PropTypes.arrayOf.isRequired,
 };
 
 export default MusicCard;

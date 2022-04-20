@@ -10,6 +10,7 @@ import Search from './pages/search';
 import { getUser } from './services/userAPI';
 import searchAlbumsAPI from './services/searchAlbumsAPI';
 import getMusics from './services/musicsAPI';
+import { getFavoriteSongs } from './services/favoriteSongsAPI';
 
 class App extends React.Component {
   constructor(props) {
@@ -119,6 +120,20 @@ class App extends React.Component {
   //   );
   // }
 
+  fetchGetFavoSongs = async () => {
+    this.setState(
+      { loading: true },
+      async () => {
+        const musicFav = await getFavoriteSongs();
+        console.log(musicFav);
+        this.setState({
+          loading: false,
+          musicasFavoritas: musicFav,
+        });
+      },
+    );
+  }
+
   render() {
     const { logado } = this.state;
     return (
@@ -155,7 +170,7 @@ class App extends React.Component {
                 { ...props }
                 fetchGetUser={ this.fetchGetUser }
                 fetchMusicApi={ this.fetchMusicApi }
-                fetchGetAddSong={ this.fetchGetAddSong }
+                fetchGetFavoSongs={ this.fetchGetFavoSongs }
               />) }
             />
             <Route

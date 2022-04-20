@@ -99,7 +99,7 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
-  listaMusicasAlbum: PropTypes.arrayOf.isRequired,
+  fetchGetFavoSongs: PropTypes.func.isRequired,
   musicasFavoritas: PropTypes.arrayOf.isRequired,
   music: PropTypes.arrayOf.isRequired,
 };

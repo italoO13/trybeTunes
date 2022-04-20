@@ -13,7 +13,8 @@ class MusicCard extends React.Component {
   }
 
   componentDidMount() {
-    const { musicasFavoritas, trackId: id } = this.props;
+    const { musicasFavoritas, music } = this.props;
+    const { trackId: id } = music;
     this.setState({
       favorite: musicasFavoritas.some(({ trackId }) => id === trackId),
     });
@@ -33,9 +34,10 @@ class MusicCard extends React.Component {
     this.setState(
       { loading: true },
       async () => {
-        const { listaMusicasAlbum, trackId: id } = this.props;
-        const musica = listaMusicasAlbum.find(({ trackId }) => trackId === id);
-        await addSong(musica);
+        // const { listaMusicasAlbum, trackId: id } = this.props;
+        // const musica = listaMusicasAlbum.find(({ trackId }) => trackId === id);
+        const { music } = this.props;
+        await addSong(music);
         this.setState({
           loading: false,
         });
@@ -44,12 +46,15 @@ class MusicCard extends React.Component {
   }
 
   RemoveDoFavorito = async () => {
+    const { fetchGetFavoSongs } = this.props;
     this.setState(
       { loading: true },
       async () => {
-        const { listaMusicasAlbum, trackId: id } = this.props;
-        const musica = listaMusicasAlbum.find(({ trackId }) => trackId === id);
-        await removeSong(musica);
+        // const { listaMusicasAlbum, trackId: id } = this.props;
+        // const musica = listaMusicasAlbum.find(({ trackId }) => trackId === id);
+        const { music } = this.props;
+        await removeSong(music);
+        await fetchGetFavoSongs();
         this.setState({
           loading: false,
         });
@@ -58,7 +63,8 @@ class MusicCard extends React.Component {
   }
 
   render() {
-    const { trackName, previewUrl, trackId } = this.props;
+    const { music } = this.props;
+    const { trackName, previewUrl, trackId } = music;
     const { favorite, loading } = this.state;
     return (
       <div>
@@ -74,6 +80,7 @@ class MusicCard extends React.Component {
             <label htmlFor={ trackName }>
               Favorita
               <input
+                id={ trackName }
                 name={ trackId }
                 type="checkbox"
                 onChange={ this.onInputChange }
@@ -94,6 +101,7 @@ MusicCard.propTypes = {
   trackId: PropTypes.number.isRequired,
   listaMusicasAlbum: PropTypes.arrayOf.isRequired,
   musicasFavoritas: PropTypes.arrayOf.isRequired,
+  music: PropTypes.arrayOf.isRequired,
 };
 
 export default MusicCard;

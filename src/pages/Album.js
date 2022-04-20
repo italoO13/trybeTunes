@@ -54,10 +54,11 @@ class Album extends React.Component {
               if (index !== 0) {
                 return (
                   <MusicCard
-                    { ...musica }
+                    music={ musica }
                     { ...this.state }
                     { ...this.props }
                     key={ index }
+                    fetchGetFavoSongs={ this.fetchGetFavoSongs }
                   />
                 );
               }

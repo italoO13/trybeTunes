@@ -3,6 +3,8 @@ import propTypes from 'prop-types';
 import Input from '../components/Input';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
+import logo from '../img/logo.svg';
+import styles from '../styles/login.module.css';
 
 class Login extends React.Component {
   constructor(props) {
@@ -13,24 +15,31 @@ class Login extends React.Component {
   }
 
   criaUsuario = async () => {
+    // Cria usuário assim que é clicado em entrar
     this.setState(
       { loading: true },
       async () => {
+        // Recebe função (MudaPara...) que identifica se usuário foi foi logado.
+        // Recebe NomeLogin, var de estado do app que armazena input nome do login
         const { NomeLogin, MudaParaLogado } = this.props;
+        // Chama função que cria usuário
         await createUser({ name: NomeLogin });
         this.setState({
           loading: false,
         });
+        // Muda estado de logado de false para true
         MudaParaLogado();
       },
     );
   }
 
   renderLogin = () => {
+    // recebe fun onInputChange que controla input do form
+    // Recebe var statussButt... caso seja validado o input seu valor passa para true
     const { NomeLogin, onInputChange, statusButtonLogin } = this.props;
     return (
       <>
-        <h2>Login</h2>
+        <img src={ logo } alt="logo" />
         <form>
           <Input
             name="NomeLogin"
@@ -57,7 +66,7 @@ class Login extends React.Component {
   render() {
     const { loading } = this.state;
     return (
-      <div data-testid="page-login">
+      <div data-testid="page-login" className={ styles.container }>
         {
           loading
             ? <Loading />

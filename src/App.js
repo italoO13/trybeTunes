@@ -7,7 +7,7 @@ import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import Search from './pages/search';
-import { getUser } from './services/userAPI';
+import { getUser, updateUser } from './services/userAPI';
 import searchAlbumsAPI from './services/searchAlbumsAPI';
 import getMusics from './services/musicsAPI';
 import { getFavoriteSongs } from './services/favoriteSongsAPI';
@@ -71,6 +71,18 @@ class App extends React.Component {
         this.setState({
           loading: false,
           pessoaLogada,
+        });
+      },
+    );
+  }
+
+  fetchUpdateUser = async (perfilEditado) => {
+    this.setState(
+      { loading: true },
+      async () => {
+        await updateUser(perfilEditado);
+        this.setState({
+          loading: false,
         });
       },
     );
@@ -145,6 +157,7 @@ class App extends React.Component {
               render={ () => (<ProfileEdit
                 { ... this.state }
                 fetchGetUser={ this.fetchGetUser }
+                fetchUpdateUser={ this.fetchUpdateUser }
               />) }
             />
             <Route

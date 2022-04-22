@@ -1,0 +1,40 @@
+.link {
+  color: black;
+  text-decoration: none;
+}
+
+.container {
+  border-radius: 7px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  height: 300px;
+  margin: 15px;
+  text-align: left;
+  transition: all 0.5s;
+  width: 250px;
+}
+
+.imgWrapper {
+  border-radius: 7px;
+  height: 60%;
+  width: 100%;
+}
+
+.imgWrapper img {
+  border-radius: 6px 6px 0 0;
+  height: 100%;
+  width: 100%;
+}
+
+.texto {
+  font-weight: 500;
+  padding: 10px;
+}
+
+.texto h3 {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.container:hover {
+  transform: scale(110%);
+}

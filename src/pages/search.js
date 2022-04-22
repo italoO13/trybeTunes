@@ -39,7 +39,6 @@ class Search extends React.Component {
     return (
       <>
         <Header { ...this.props } />
-        Search
         <form>
           {/* { Input responsavel por coletar nome do artista e enviar para var de state no componente app } */}
           <Input

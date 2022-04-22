@@ -34,8 +34,6 @@ class MusicCard extends React.Component {
     this.setState(
       { loading: true },
       async () => {
-        // const { listaMusicasAlbum, trackId: id } = this.props;
-        // const musica = listaMusicasAlbum.find(({ trackId }) => trackId === id);
         const { music } = this.props;
         await addSong(music);
         this.setState({
@@ -50,8 +48,6 @@ class MusicCard extends React.Component {
     this.setState(
       { loading: true },
       async () => {
-        // const { listaMusicasAlbum, trackId: id } = this.props;
-        // const musica = listaMusicasAlbum.find(({ trackId }) => trackId === id);
         const { music } = this.props;
         await removeSong(music);
         await fetchGetFavoSongs();

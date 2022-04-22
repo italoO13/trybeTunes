@@ -9,18 +9,23 @@ class Favorites extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // Cria uma variavel de login local que irá funcionar para a chamada do getFavoriteSongs API
       loadingLocal: false,
+      // Variavel que recebera da getFavo.. a lista de musicas que foram salvas como favoritas
       musicasFavoritas: [],
     };
   }
 
   componentDidMount() {
     const { fetchGetUser } = this.props;
+    // Atualiza as informações sobre pessoa logada
     fetchGetUser();
+    // Faz chamada a API assim que componenete é criado.
     this.fetchGetFavoSongs();
   }
 
   fetchGetFavoSongs = async () => {
+    // faz chama a Api de musicas adicionadas como favoritas e salva na variavel musicasFavoritas.
     this.setState(
       { loadingLocal: true },
       async () => {

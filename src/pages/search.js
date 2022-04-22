@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import Input from '../components/Input';
 import CardAlbum from '../components/cardAlbum';
+import styles from '../styles/search.module.css';
 
 class Search extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class Search extends React.Component {
     return (
       <>
         <p>{texto}</p>
-        <div className="Albuns">
+        <div className={ styles.containerCardsAlbum }>
           {albunsArtista.length === 0
             ? <p>{notFound}</p>
             : albunsArtista
@@ -37,9 +38,9 @@ class Search extends React.Component {
     const { nomeArtista, onInputChange, statusButtonSearch,
       pesquisafeita, fetchSearchAlbum } = this.props;
     return (
-      <>
+      <div className={ styles.container }>
         <Header { ...this.props } />
-        <form>
+        <form className={ styles.form }>
           {/* { Input responsavel por coletar nome do artista e enviar para var de state no componente app } */}
           <Input
             name="nomeArtista"
@@ -62,14 +63,14 @@ class Search extends React.Component {
           </button>
 
         </form>
-        <div className="ListaAlbum">
+        <div className={ styles.listaAbum }>
           {/* Variavel em compoenente pai que retorna true caso a chamada a api tenha finalizado com sucesso */}
           {pesquisafeita
             ? this.renderListaAlbum()
             : null}
         </div>
 
-      </>
+      </div>
     );
   }
 

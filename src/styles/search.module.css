@@ -1,0 +1,55 @@
+.form {
+  padding-top: 60px;
+  text-align: center;
+}
+
+.form input {
+  margin-right: 12px;
+  max-width: 519px;
+  padding: 10px;
+  width: 100%;
+}
+
+
+.form button {
+  background-color: var(--white);
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: var(--accent);
+  margin-top: 20px;
+  padding: 10px;
+  transition: all 0.5s;
+  width: 134px;
+}
+
+.form button:enabled {
+  background-color: var(--accent);
+  border: 1px solid transparent;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.listaAbum {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  margin-top: 40px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.listaAbum p {
+  font-size: 25px;
+  margin: 20px;
+  text-transform: capitalize;
+}
+
+.containerCardsAlbum {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+}

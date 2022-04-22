@@ -12,6 +12,7 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
+    // Assim que entra em search ele atualiza os dados de pessoa logada no componente pai
     const { fetchGetUser } = this.props;
     fetchGetUser();
   }
@@ -40,6 +41,7 @@ class Search extends React.Component {
         <Header { ...this.props } />
         Search
         <form>
+          {/* { Input responsavel por coletar nome do artista e enviar para var de state no componente app } */}
           <Input
             name="nomeArtista"
             testid="search-artist-input"
@@ -48,7 +50,8 @@ class Search extends React.Component {
             value={ nomeArtista }
             onInputChange={ onInputChange }
           />
-
+          {/* recebe statusButton... que valida o input sempre que onInputchange é chamado no comp app.js  */}
+          {/* Executa função fetchSearchAlbum que pega nomeArtista, faz chamada em api e joga dados em albumArtista */}
           <button
             data-testid="search-artist-button"
             disabled={ statusButtonSearch }
@@ -61,6 +64,7 @@ class Search extends React.Component {
 
         </form>
         <div className="ListaAlbum">
+          {/* Variavel em compoenente pai que retorna true caso a chamada a api tenha finalizado com sucesso */}
           {pesquisafeita
             ? this.renderListaAlbum()
             : null}

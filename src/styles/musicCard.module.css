@@ -1,0 +1,41 @@
+.container:before {
+  background-color: aliceblue;
+  border: 1px solid transparent;
+  content: '';
+  height: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  position: relative;
+}
+
+.nomeMusica {
+  flex-basis: 100px;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.nomeMusica p {
+  width: 90%;
+}
+
+.listaMusic {
+  display: flex;
+  flex-grow: 3;
+}
+
+.listaMusic label {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}

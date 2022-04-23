@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
+import styles from '../styles/musicCard.module.css';
 
 class MusicCard extends React.Component {
   constructor(props) {
@@ -65,26 +66,30 @@ class MusicCard extends React.Component {
     return (
       <div>
         {loading ? <Loading /> : (
-          <>
+          <div className={ styles.container }>
+            <div className={ styles.nomeMusica }>
+              <p>{ trackName }</p>
 
-            <p>{ trackName }</p>
-            <audio data-testid="audio-component" src={ previewUrl } controls>
-              <track kind="captions" />
-              O seu navegador não suporta o elemento
-              <code>audio</code>
-            </audio>
-            <label htmlFor={ trackName }>
-              Favorita
-              <input
-                id={ trackName }
-                name={ trackId }
-                type="checkbox"
-                onChange={ this.onInputChange }
-                checked={ favorite }
-                data-testid={ `checkbox-music-${trackId}` }
-              />
-            </label>
-          </>
+            </div>
+            <div className={ styles.listaMusic }>
+              <audio data-testid="audio-component" src={ previewUrl } controls>
+                <track kind="captions" />
+                O seu navegador não suporta o elemento
+                <code>audio</code>
+              </audio>
+              <label htmlFor={ trackName }>
+                Favoritar
+                <input
+                  id={ trackName }
+                  name={ trackId }
+                  type="checkbox"
+                  onChange={ this.onInputChange }
+                  checked={ favorite }
+                  data-testid={ `checkbox-music-${trackId}` }
+                />
+              </label>
+            </div>
+          </div>
         )}
       </div>
     );

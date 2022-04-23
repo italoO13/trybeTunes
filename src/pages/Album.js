@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import styles from '../styles/album.module.css';
 
 class Album extends React.Component {
   constructor(props) {
@@ -44,29 +45,32 @@ class Album extends React.Component {
       return (
         <>
           <Header { ...this.props } />
-          Album
-          <h3 data-testid="artist-name">{artistName}</h3>
-          <img src={ artworkUrl100 } alt={ collectionName } />
-          <p data-testid="album-name">{ collectionName }</p>
+          <div className={ styles.container }>
+            <div className={ styles.infoAlbum }>
+              <img src={ artworkUrl100 } alt={ collectionName } />
+              <p data-testid="album-name">{ collectionName }</p>
+              <h3 data-testid="artist-name">{artistName}</h3>
+            </div>
 
-          <div className="ListaMusicas">
-            {listaMusicasAlbum.map((musica, index) => {
-              if (index !== 0) {
-                return (
-                  <MusicCard
-                    music={ musica }
-                    { ...this.state }
-                    { ...this.props }
-                    key={ index }
-                    fetchGetFavoSongs={ this.fetchGetFavoSongs }
-                  />
-                );
-              }
-              return null;
-            })}
+            <div className={ styles.listaMusica }>
+              {listaMusicasAlbum.map((musica, index) => {
+                if (index !== 0) {
+                  return (
+                    <MusicCard
+                      music={ musica }
+                      { ...this.state }
+                      { ...this.props }
+                      key={ index }
+                      fetchGetFavoSongs={ this.fetchGetFavoSongs }
+                    />
+                  );
+                }
+                return null;
+              })}
+
+            </div>
 
           </div>
-
         </>
       );
     }

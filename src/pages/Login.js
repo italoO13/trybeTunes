@@ -40,11 +40,12 @@ class Login extends React.Component {
     return (
       <>
         <img src={ logo } alt="logo" />
-        <form>
+        <form autoComplete="off">
           <Input
             name="NomeLogin"
             testid="login-name-input"
             type="text"
+            autocomplete="false"
             placeholder="nome"
             value={ NomeLogin }
             onInputChange={ onInputChange }

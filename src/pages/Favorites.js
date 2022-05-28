@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import MusicCard from '../components/MusicCard';
+import styles from '../styles/favorite.module.css';
 
 class Favorites extends React.Component {
   constructor(props) {
@@ -41,10 +42,10 @@ class Favorites extends React.Component {
   renderSearch = () => {
     const { musicasFavoritas } = this.state;
     return (
-      <>
+      <div className={ styles.container }>
         <Header { ...this.props } />
-        Favorites
-        <div className="MusicasFavoritas">
+        <h2>Músicas Favoritas:</h2>
+        <div className={ styles.containerMusicCard }>
           {musicasFavoritas.map((musica, index) => (<MusicCard
             key={ index }
             music={ musica }
@@ -54,7 +55,7 @@ class Favorites extends React.Component {
           />))}
 
         </div>
-      </>
+      </div>
     );
   }
 

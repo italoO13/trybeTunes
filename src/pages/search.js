@@ -40,7 +40,7 @@ class Search extends React.Component {
     return (
       <div className={ styles.container }>
         <Header { ...this.props } />
-        <form className={ styles.form }>
+        <form className={ styles.form } autoComplete="off">
           {/* { Input responsavel por coletar nome do artista e enviar para var de state no componente app } */}
           <Input
             name="nomeArtista"

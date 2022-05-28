@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
+import styles from '../styles/profileedit.module.css';
 
 class ProfileEdit extends React.Component {
   constructor(props) {
@@ -92,20 +93,24 @@ class ProfileEdit extends React.Component {
     return (
       <>
         <Header { ...this.props } />
-        ProfileEdit
-        <form>
-          <label htmlFor="image">
-            <img src={ image } alt="imagem-perfil" />
+        <form className={ styles.form } autoComplete="off">
+          <label htmlFor="image" className={ styles.img }>
+            <img
+              src={ image === undefined || image.length === 0
+                ? 'https://cdn-icons-png.flaticon.com/512/17/17004.png' : image }
+              alt="imagem-perfil"
+            />
             <input
               name="image"
               data-testid="edit-input-image"
+              placeholder="Insira um link"
               value={ image }
               type="text"
               onChange={ this.onInputChange }
             />
           </label>
-          Nome
-          <label htmlFor="name">
+          <label htmlFor="name" className={ styles.texto }>
+            <h3>Nome</h3>
             <input
               name="name"
               data-testid="edit-input-name"
@@ -114,8 +119,8 @@ class ProfileEdit extends React.Component {
               onChange={ this.onInputChange }
             />
           </label>
-          <label htmlFor="email">
-            Email
+          <label htmlFor="email" className={ styles.texto }>
+            <h3>Email</h3>
             <input
               name="email"
               data-testid="edit-input-email"
@@ -124,12 +129,13 @@ class ProfileEdit extends React.Component {
               onChange={ this.onInputChange }
             />
           </label>
-          <label htmlFor="description">
-            Descricao
+          <label htmlFor="description" className={ styles.texto }>
+            <h3>Descricao</h3>
             <textarea
               name="description"
               data-testid="edit-input-description"
               value={ description }
+              autoComplete="false"
               onChange={ this.onInputChange }
             />
           </label>

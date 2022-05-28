@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import PerfilVisualizacao from '../components/PerfilVisualizacao';
+import style from '../styles/profile.module.css';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -18,7 +19,9 @@ class Profile extends React.Component {
   renderSearch = () => (
     <>
       <Header { ...this.props } />
-      <PerfilVisualizacao { ...this.props } />
+      <div className={ style.container }>
+        <PerfilVisualizacao { ...this.props } />
+      </div>
     </>
   )
 

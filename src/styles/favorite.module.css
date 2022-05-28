@@ -1,0 +1,10 @@
+.container h2 {
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.containerMusicCard {
+  margin: auto;
+  max-width: 1000px;
+}
